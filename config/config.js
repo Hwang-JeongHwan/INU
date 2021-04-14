@@ -7,6 +7,7 @@ module.exports = {
     database: 'test',
     host: 'database-1.cczjxovu7nad.ap-northeast-2.rds.amazonaws.com',
     dialect: 'mysql',
+    logging: false,
   },
   test: {
     username: "root",
