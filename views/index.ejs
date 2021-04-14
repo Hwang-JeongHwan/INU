@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+  </body>
+  <div>
+    <form id="twit-form" action="/post" method="post" enctype="multipart/form-data">
+      <div class="input-group">
+        <textarea id="barcode" name="barcode" maxlength="140"></textarea>
+      </div>
+      <div>
+        <button id="barcode-btn" type="submit" class="btn">전송</button>
+      </div>
+    </form>
+  </div>
+</html>
