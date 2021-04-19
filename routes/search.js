@@ -8,13 +8,16 @@ router.get('/barcode',async (req,res,next)=>{
         const barcode = await Barcode.findOne({ where: { barcode: req.query.barcode} });
         if(barcode){
             res.send(barcode);
+            res.status('sucess',200);
         }
         else{
             res.send('no barcode');
+            res.status('fail',400);
         }
       } catch (err) {
         console.error(err);
         next(err);
+        res.status('sever problem',500);
       }
 
 })
