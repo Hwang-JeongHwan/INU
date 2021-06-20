@@ -2,22 +2,112 @@ const express = require('express');
 const router = express.Router();
 const request = require('request');
 const Barcode = require('../models/barcode');
+const { Op } = require("sequelize");
+//const { sequelize } = require('../../../ch9/9.1/nodebird/models');
+
 
 router.get('/barcode',async (req,res,next)=>{
     try {
         const barcode = await Barcode.findOne({ where: { barcode: req.query.barcode} });
+        
+
+
         if(barcode){
-            res.send(barcode);
-            res.status('sucess',200);
+           
+            res.status(200).send(barcode);
         }
         else{
-            res.send('no barcode');
-            res.status('fail',400);
+            
+            res.status(400).send('no barcode');
         }
       } catch (err) {
         console.error(err);
         next(err);
-        res.status('sever problem',500);
+        res.status(500).send('server error');
+      }
+
+})
+router.get('/barcode1',async (req,res,next)=>{
+    try {
+        var barcode = await Barcode.findOne({ where: { barcode: req.query.barcode} });
+        
+        //console.log(flag);
+        var a=barcode.name;
+        //console.log(barcode);
+        
+
+        //console.log(a);
+        const x=barcode.name.length;
+        //console.log('a',a[5]);
+        //a[5]='ㅏ';
+        //console.log('a',a[5]);
+        
+        console.log(x);
+        for(var i =0;i<=x;i++){
+            //console.log(a[i]);
+            if (a[i]=='m'){
+                console.log(a[i]);
+                console.log(a[i+1]);
+                
+                
+                a=a.replace('ml','미리');
+                barcode.name=a;
+
+
+                console.log(a);
+                break;
+            }
+           if (a[i]=='M')
+           {
+            a=a.replace('ML','미리');
+            barcode.name=a;
+
+
+            console.log(a);
+            break; 
+           }
+            
+        }
+        
+
+        
+
+        if(barcode){
+           
+            res.status(200).send(barcode);
+        }
+        else{
+            
+            res.status(400).send('no barcode');
+        }
+      } catch (err) {
+        console.error(err);
+        next(err);
+        res.status(500).send('server error');
+      }
+
+})
+
+router.get('/name',async (req,res,next)=>{
+    try {
+        //const name = await Barcode.findOne({ where:sequelize.literal(`name like %${req.body.name}%`)});
+        // SELECT * FROM test.barcodes where name like '%req.query.name%' 이랑 같음
+        const name = await Barcode.findAll({where:{name:{[Op.substring]:`${req.query.name}`}}});
+        
+         
+        console.log(name);
+        if(name){
+           
+            res.status(200).send(name);
+        }
+        else{
+            
+            res.status(400).send('no name');
+        }
+      } catch (err) {
+        console.error(err);
+        next(err);
+        res.status(500).send('server error');
       }
 
 })

@@ -3,6 +3,7 @@ const Sequelize = require('sequelize');
 const env = process.env.NODE_ENV || 'development';
 const config = require('../config/config')[env];
 const Barcode = require('./barcode');
+const Cal = require('./cal');
 //const Post = require('./post');
 //const Hashtag = require('./hashtag');
 
@@ -13,11 +14,13 @@ const sequelize = new Sequelize(
   
 db.sequelize = sequelize;
 db.Barcode= Barcode;
+db.cal=Cal;
 
 Barcode.init(sequelize);
+//cal.init(sequelize);
 //Post.init(sequelize);
 //Hashtag.init(sequelize);
-
+//cal.associate(db);
 Barcode.associate(db);
 //Post.associate(db);
 //Hashtag.associate(db);

@@ -13,7 +13,7 @@ router.get('/barcode', async (req, res) => {
 
     barcodeurl = 'http://openapi.foodsafetykorea.go.kr/api/';
     barcodeurl += bar_key;
-    barcodeurl += '/I2570/json/0/1000/';
+    barcodeurl += '/I2790/json/0/1000/';
     //barcodeurl += code;
     
     request({
@@ -54,26 +54,8 @@ router.get('/barcode', async (req, res) => {
     });
 } 
 )
-
-router.get('/update',async (req,res,next)=>{
-    try {
-        const barcode = await Barcode.findOne({ where: { id: 1} });
-        const name = new Array();
-        name=barcode.name;
-        console.log(name);
-        if(barcode){
-           
-            res.status(200).send(barcode);
-        }
-        else{
-            
-            res.status(400).send('no barcode');
-        }
-      } catch (err) {
-        console.error(err);
-        next(err);
-        res.status(500).send('server error');
-      }
+router.post('/code',(req,res)=>{
 
 })
+
 module.exports = router;
