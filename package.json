@@ -1,13 +1,13 @@
 {
   "name": "nodebird",
   "version": "0.0.1",
-  "description": "익스프레스로 만드는 SNS 서비스",
+  "description": "INU 캡스톤디자인",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app",
     "test": "jest"
   },
-  "author": "ZeroCho",
+  "author": "JeongHwan",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^3.0.7",
